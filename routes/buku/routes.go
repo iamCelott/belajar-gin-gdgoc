@@ -9,7 +9,8 @@ import (
 func Routes(r *gin.Engine) {
 	buku := r.Group("/buku")
 	buku.GET("/", routes.Read)
-	buku.POST("/")
-	buku.PUT("/:id")
-	buku.DELETE("/:id")
+	buku.GET("/:id", routes.Detail)
+	buku.POST("/", routes.Create)
+	buku.PUT("/:id", routes.Update)
+	buku.DELETE("/:id", routes.Delete)
 }

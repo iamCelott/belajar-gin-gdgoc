@@ -4,8 +4,11 @@ import "gorm.io/gorm"
 
 type Book struct {
 	gorm.Model
-	ID          uint   `json:"ID" gorm:"primaryKey;"`
-	Name        string `json:"name" gorm:"not null;type:varchar(255);"`
-	Category    string `json:"category" gorm:"not null;type:varchar(255);"`
-	Description *string `json:"description,omitempty" gorm:"type:varchar(255);"`
+	ID          string    `json:"ID" gorm:"not null;type:char(36);primaryKey"`
+	Name        string    `json:"name,omitempty" gorm:"not null;type:varchar(255);"`
+	CategoryID  string    `json:"-"`
+	Category    *Category `json:"category,omitempty" gorm:"foreignKey:CategoryID"`
+	Description *string   `json:"description,omitempty" gorm:"type:varchar(255);"`
+	Author      string    `json:"author,omitempty" gorm:"not null;type:varchar(255);"`
+	File        *File     `json:"file,omitempty" gorm:"polymorphic:Owner;"`
 }

@@ -42,6 +42,5 @@ func DB() *gorm.DB {
 			panic(fmt.Sprintf("DB ERROR: %v", err))
 		}
 	})
-
 	return dbInstance
 }
